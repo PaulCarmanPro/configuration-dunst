@@ -1,0 +1,124 @@
+# pkill dunst to re-read configuration
+# execute dunst from command line to see configuration errors
+# @see man 5 dunst or https://github.com/dunst-project/dunst/blob/master/docs/dunst.5.pod
+# rule manner is filter/modification which is to happen to all passing filter
+# @see /usr/local/etc/xdg/dunst/dunstrc
+
+[global]
+   # declare monitor notification is to appear on @see monitor
+   # keyboard = same monitor window with keyboard focus
+   follow=keyboard
+   # Allow a pango markup (subset of html):
+   #  <b>bold</b>
+   #  <i>italic</i>
+   #  <u>underline</u>
+   # Complete reference at http://developer.gnome.org/pango/stable/PangoMarkupFormat.html
+   # Markup full/strip/no (default no)
+   markup = full
+
+   alignment=center
+   font=EnvyCodeR 19
+   horizontal_padding = 8
+   offset=10x10
+   origin=top-center
+   padding=8
+   width=(0,1000)
+   separator_color=frame
+   separator_height=6
+   notification_limit=0
+   indicate_hidden=true
+   # scale determined by $ xrandr --dpi ?
+   scale=0
+   transparency=30
+
+   # %a  appname
+   # %s  summary (does NOT allow any markup)
+   # %b  body
+   # %i  iconname (including its path)
+   # %I  iconname (without its path)
+   # %p  progress value if set ([  0%] to [100%]) or nothing
+   # Regardless of markup setting, markup tags in format will be parsed.
+   # Note: literal ampersand (&) must be escaped as '&amp;'
+   # if you don't want a notification to be displayed, set the format to ""
+   # example format = "<b><span foreground='#fcaf3e'>%s</span></b>\n%b"
+   format="<span font="Latin Modern Roman Caps">%s</span>\n%b" # default "<b>%s</b>\n%b"
+
+   ignore_newline=no
+   # integer value passed as hint creates progress bar
+   progress_bar=true
+   progress_bar_horizontal_alignment=center
+   word_wrap=yes
+
+   sort=yes
+   show_age_threshold=-1
+   idle_threshold=0
+   sticky_history=no
+
+   browser=/usr/bin/flashpeak-slimjet
+   # context menu command (I don't have dmenu installed)
+   dmenu=/usr/bin/dmenu -p dunst:
+
+[urgency_low]
+   # IMPORTANT: colors have to be defined in quotation marks.
+   # Otherwise the '#' and following  would be interpreted as a comment.
+   background = "#002b36"
+   foreground = "#839195"
+   timeout = 2
+
+[urgency_normal]
+   background = "#000000"
+   foreground = "#FFD956"
+   timeout = 5
+
+[urgency_critical]
+   background = "#ca2b2f"
+   foreground = "#ffffff"
+   timeout = 10
+
+[volume]
+	summary=volume
+	
+# Sections other than above interpreted as rules to override settings for certain messages.
+# Messages matched by 'appname', 'summary', 'body' or 'icon' and you can override the 'timeout', 'urgency', 'foreground', 'background' and 'format'.
+# Shell-like globbing will get expanded.
+#
+# SCRIPTING
+# may specify script to run if rule matches via the 'script' option.
+# The script will be called as follows:
+# script appname summary body icon urgency where urgency can be "LOW", "NORMAL" or "CRITICAL".
+#
+# NOTE: It might be helpful to run dunst -print in a terminal in order to find fitting options for rules.
+
+#[espeak]
+#    summary = "*"
+#    script = dunst_espeak.sh
+
+#[script-test]
+#    summary = "*script*"
+#    script = dunst_test.sh
+
+#[ignore]
+# This notification will not be displayed
+#    summary = "foobar"
+#    format = ""
+
+#[signed_on]
+#    appname = Pidgin
+#    summary = "*signed on*"
+#    urgency = low
+#
+#[signed_off]
+#    appname = Pidgin
+#    summary = *signed off*
+#    urgency = low
+#
+#[says]
+#    appname = Pidgin
+#    summary = *says*
+#    urgency = critical
+#
+#[twitter]
+#    appname = Pidgin
+#    summary = *twitter.com*
+#    urgency = normal
+#
