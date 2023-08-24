@@ -2,8 +2,8 @@
 
 Dunst is a notification daemon which resonds to nofication signals sent by nofity-send over dbus. Dunst also comes with dunstctl which provides extra features like...
 
-dunstctl close-all # removes all notificatons and is bound to Super-Esc in openboxrc.
-dunstctl history-pop # redisplay previous notification
+dunstctl close-all # removes all notificatons (bound to Super-Esc in openboxrc).
+dunstctl history-pop # redisplay previous notification (bound to Shift-Super-Esc in openboxrc).
 
 The global dunstrc is in /etc/xdg/dunstrc.
 
