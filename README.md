@@ -1,6 +1,6 @@
 # configuration-dunst
 
-Dunst is a notification daemon which resonds to nofication signals sent by nofity-send over dbus. It includes dunstctl which provides extra features like "close-all" (bound to Super-Esc in openboxrc) and "history-pop" (bound to Shift-Super-Esc in openboxrc).
+Dunst is a notification daemon which resonds to nofication signals sent by nofity-send over dbus. It includes dunstctl which provides extra features like "close-all" (Super-Esc in my openboxrc) and "history-pop" (Shift-Super-Esc in my openboxrc).
 
 Global dunstrc is /etc/xdg/dunstrc. Dunst can be killed at any time, but its existance as /usr/share/dbus-1/services/org.knopwob.dunst.service causes notify-send to automatically launch dunst.
 
