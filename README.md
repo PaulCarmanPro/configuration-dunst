@@ -1,11 +1,15 @@
 # configuration-dunst
 
-Dunst is a notification daemon which resonds to nofication signals sent by nofity-send over dbus.
+Dunst is a notification daemon which resonds to nofication signals sent by nofity-send over dbus. It incldes dunstctl which provides extra features like "close-all" (bound to Super-Esc in openboxrc) and "history-pop" (bound to Shift-Super-Esc in openboxrc).
 
-Dunst comes with dunstctl which provides extra features like $ dunstctl close-all # removes all notificatons (bound to Super-Esc in openboxrc) and $ dunstctl history-pop # redisplay previous notification (bound to Shift-Super-Esc in openboxrc).
+Global dunstrc is /etc/xdg/dunstrc. Dunst can be killed at any time, but its existance as /usr/share/dbus-1/services/org.knopwob.dunst.service causes notify-send to automatically launch dunst.
 
-The global dunstrc is in /etc/xdg/dunstrc.
+I use a speedy-repeat keyboard with a highly-adjustable volume control and discovered that many quick repeated notificatoin causes the notification system to deadlock. The following code is used in "volume" to avoid total deadlock:
 
-Dunst can be killed at any time, but its existance as /usr/share/dbus-1/services/org.knopwob.dunst.service causes notify-send to automatically launch dunst.
+   NotifyVolume "$1" &
+   declare z="$!"
+   timeout 0.5s bash -c wait $z
+   [[ 124 = "$?" ]] \
+      && while pkill dunst; do sleep 0.01s; done # avoid lockup
 
-I have grown to like dunst, but volume with a jacked keyboard can quickly send a slew of replacement notifications fast which causes dunst to lock solid. The problem seems to fix itself after 15 minures of rest or so, but it is very annoying.
+This kind of thing is needed only for fast repeated notifications. Leaving the keyboard repeat rate alone eliminates the problem. 
