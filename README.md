@@ -6,10 +6,12 @@ Global dunstrc is /etc/xdg/dunstrc. Dunst can be killed at any time, but its exi
 
 I use a speedy-repeat keyboard with a highly-adjustable volume control and discovered that many quick repeated notificatoin causes the notification system to deadlock. The following code is used in "volume" to avoid total deadlock:
 
-   NotifyVolume "$1" &
-   declare z="$!"
-   timeout 0.5s bash -c wait $z
-   [[ 124 = "$?" ]] \
-      && while pkill dunst; do sleep 0.01s; done # avoid lockup
+````bash
+NotifyVolume "$1" &
+declare z="$!"
+timeout 0.5s bash -c wait $z
+[[ 124 = "$?" ]] \
+   && while pkill dunst; do sleep 0.01s; done # avoid lockup
+````
 
 This kind of thing is needed only for fast repeated notifications. Leaving the keyboard repeat rate alone eliminates the problem. 
