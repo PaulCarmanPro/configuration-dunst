@@ -1,6 +1,7 @@
 # pkill dunst to re-read configuration
-# execute dunst from command line to see configuration errors
-# @see man 5 dunst or https://github.com/dunst-project/dunst/blob/master/docs/dunst.5.pod
+# execute dunst from command line to see configuration errors?
+# @see man 5 dunst
+# @see https://github.com/dunst-project/dunst/blob/master/docs/dunst.5.pod
 # rule manner is filter/modification which is to happen to all passing filter
 # @see /usr/local/etc/xdg/dunst/dunstrc
 
@@ -20,7 +21,7 @@
    font=EnvyCodeR 19
    horizontal_padding = 8
    offset=10x10
-   origin=top-center
+   origin=top-right
    padding=8
    width=(0,1000)
    separator_color=frame
@@ -76,8 +77,8 @@
    timeout = 10
 
 [volume]
-	summary=volume
-	
+   summary=volume
+
 # Sections other than above interpreted as rules to override settings for certain messages.
 # Messages matched by 'appname', 'summary', 'body' or 'icon' and you can override the 'timeout', 'urgency', 'foreground', 'background' and 'format'.
 # Shell-like globbing will get expanded.
